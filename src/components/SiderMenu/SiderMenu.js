@@ -57,6 +57,7 @@ export default class SiderMenu extends PureComponent {
     this.state = {
       openKeys: this.getDefaultCollapsedSubMenus(props),
     };
+    console.log(this.menus)
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.location.pathname !== this.props.location.pathname) {
@@ -204,6 +205,7 @@ export default class SiderMenu extends PureComponent {
     if (!selectedKeys.length) {
       selectedKeys = [openKeys[openKeys.length - 1]];
     }
+
     return (
       <Sider
         trigger={null}

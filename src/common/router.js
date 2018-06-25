@@ -95,6 +95,12 @@ export const getRouterData = app => {
     '/products':{
       component: dynamicWrapper(app, ['products'], () => import('../routes/Products/index')),
     },
+    '/service':{
+      component: dynamicWrapper(app, [], () => import('../layouts/CustomLayout')),
+    },
+    '/service/accept':{
+      component: dynamicWrapper(app , ['products'], () => import('../routes/Products/index')),
+    },
     // '/user/:id': {
     //   component: dynamicWrapper(app, [], () => import('../routes/User/SomeComponent')),
     // },

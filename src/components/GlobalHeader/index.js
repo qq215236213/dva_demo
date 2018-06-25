@@ -6,6 +6,7 @@ import Debounce from 'lodash-decorators/debounce';
 import { Link } from 'dva/router';
 import NoticeIcon from '../NoticeIcon';
 import HeaderSearch from '../HeaderSearch';
+import {HeaderMenu} from '../HeaderMenu';
 import styles from './index.less';
 
 
@@ -84,6 +85,8 @@ export default class GlobalHeader extends PureComponent {
         </Menu.Item>
       </Menu>
     );
+
+    const Temp = HeaderMenu({menu});
     const noticeData = this.getNoticeData();
     return (
       <div className={styles.header} >
@@ -98,34 +101,7 @@ export default class GlobalHeader extends PureComponent {
           type={collapsed ? 'menu-unfold' : 'menu-fold'}
           onClick={this.toggle}
         />
-        <div className={styles.left}>
-          <ul className={styles.menu_ul}>
-            <li>
-              <Icon style={{fontSize:16}} type={'home'}/>
-              <a href="/"></a>
-            </li>
-            <li>
-              <Icon style={{fontSize:16}} type={'tool'}/>
-              <a href="#">服务</a>
-            </li>
-            <li>
-              <Icon style={{fontSize:16}} type={'team'}/>
-              <a href="#">
-              客户
-              </a>
-            </li>
-            <li>
-              <Icon style={{fontSize:16}} type={'area-chart'}/>
-              <a href="#">仓库</a>
-            </li>
-          </ul>
-          <Dropdown overlay={menu}>
-              <span className={styles.dropdown_span} style={{marginLeft:30,display:'inline-block'}}>
-                <Icon style={{fontSize:16}} type={'appstore-o'}/>
-                <span>更多应用</span>
-              </span>
-          </Dropdown>
-        </div>
+        <Temp />
         <div className={styles.right}>
           <HeaderSearch
             className={`${styles.action} ${styles.search}`}
