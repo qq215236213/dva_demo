@@ -8,6 +8,8 @@ import { Switch,Redirect,Route } from 'dva/router';
 import { getMenuData } from '../common/menu';
 import { enquireScreen, unenquireScreen } from 'enquire-js';
 import { getRoutes } from '../utils/utils';
+import {serviceMenus} from '../common/menudata';
+import {formatter} from '../common/menu';
 
 const { Content, Header, Footer } = Layout;
 
@@ -28,7 +30,7 @@ const getRedirect = item => {
     }
   }
 };
-getMenuData().forEach(getRedirect);
+formatter(serviceMenus).forEach(getRedirect);
 
 /**
  * 获取面包屑映射
@@ -75,18 +77,7 @@ enquireScreen(b => {
   isMobile = b;
 });
 
-const menus = [
-  {
-    name: '服务管理',
-    path: 'service',
-    children: [
-      {
-        name: '服务受理',
-        path: 'accept',
-      },
-    ],
-  },
-];
+
 export default class CustomLayout extends Component{
   handleMenuCollapse = collapsed => {
     this.props.dispatch({
@@ -94,13 +85,13 @@ export default class CustomLayout extends Component{
       payload: collapsed,
     });
   };
-  getChildContext() {
-    const { location, routerData } = this.props;
-    return {
-      location,
-      breadcrumbNameMap: getBreadcrumbNameMap(menus, routerData),
-    };
-  }
+  // getChildContext() {
+  //   const { location, routerData } = this.props;
+  //   return {
+  //     location,
+  //     breadcrumbNameMap: getBreadcrumbNameMap(formatter(serviceMenus), routerData),
+  //   };
+  // }
   render(){
     const {
       currentUser,
@@ -110,10 +101,10 @@ export default class CustomLayout extends Component{
       match,
       location,
     } = this.props;
-
+    console.log(location.pathname);
     return (
       <Layout>
-        <ServiceSideMenu menuData={menus} location={location}/>
+        <ServiceSideMenu menuData={formatter(serviceMenus)} location={location}/>
         <Layout>
           <Header style={{ padding: 0 }}>
             <GlobalHeader

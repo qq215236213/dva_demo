@@ -27,6 +27,25 @@ const menuData = [
   },
 ];
 
-export {menuData}
+export {menuData};
+
+const serviceMenus = [
+  {
+    name: '服务管理',
+    path: 'service',
+    children: [
+      {
+        name: '服务受理',
+        path: 'accept',
+      },
+      {
+        name: '工单处理',
+        path: 'takestep',
+      },
+    ],
+  },
+];
+
+export {serviceMenus};
 
 

@@ -190,7 +190,6 @@ class BasicLayout extends React.PureComponent {
       location,
     } = this.props;
     const bashRedirect = this.getBaseRedirect();
-    console.log(getMenuData());
     const layout = (
       <Layout>
         <SiderMenu
